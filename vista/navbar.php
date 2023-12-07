@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <link rel="stylesheet" href="../vista/css/navbar.css">
+</head>
 <body>
 <!--Se agrega una barra de navegación para acceder a los CRUDs, y agregar la funcionalidad "buscar"-->
 <div class="menu">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <img src="../vista/img/echez-group.png"></img>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,11 +18,8 @@
         <a class="nav-link" href="vistaHome.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost/ProyectoIndicadores1_Trabajo/vista">Vistas <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Reload</a>
-      </li>
+        <a class="nav-link" href="vistaPerfil.php">Perfil <span class="sr-only">(current)</span></a>
+      </li>      
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Inventario TI
@@ -32,7 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cerrarSesion.php">Exit</a>
+        <a class="nav-link" href="cerrarSesion.php">Salir</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

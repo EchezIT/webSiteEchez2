@@ -196,7 +196,7 @@ ob_start();
 						<h2 class="table-title-name">PCs <b>Alquilados</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>PC Alquilado</span></a>
+						<a href="#crudModal" class="btn btn-gestion" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>PC Alquilado</span></a>
 						
 					</div>
 				</div>

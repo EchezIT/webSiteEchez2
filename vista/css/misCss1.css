@@ -8,6 +8,10 @@ body {
     margin: 0 0;
 }
 
+.table-title .btn-gestion {
+	background-color: #243d84;
+	color:#243d84;
+}
 .table-title-name {
 	color:#243d84;
 }

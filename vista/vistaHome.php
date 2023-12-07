@@ -3,35 +3,6 @@
   if($_SESSION['email']==null)header('Location: ../login.php');
   //var_dump($listaRolesDelUsuario);
 ?>
-<style>
-.how-section1{
-    margin-top:-15%;
-    padding: 10%;
-}
-.how-section1 h4{
-    text-align: center; 
-    --font-weight: theme; 
-    margin-bottom: 15px;
-    /*color: #ffa500;
-    font-weight: bold;
-    font-size: 30px;*/
-}
-.how-section1 .subheading{
-    color: #151515;
-    font-size: 20px;
-}
-.how-section1 .row
-{
-    margin-top: 10%;
-}
-.how-img 
-{
-    text-align: center;
-}
-.how-img img{
-    width: 20%;
-}
-</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +15,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../vista/css/misCss1.css">
+<link rel="stylesheet" href="../vista/css/vistaHome.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

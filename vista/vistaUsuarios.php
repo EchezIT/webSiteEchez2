@@ -166,7 +166,7 @@ ob_start();
 						<h2 class="table-title-name">Gestión <b>Usuarios</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>Gestión Usuarios</span></a>
+						<a href="#crudModal" class="btn btn-gestion" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>Gestión Usuarios</span></a>
 						
 					</div>
 				</div>
