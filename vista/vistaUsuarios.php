@@ -1,6 +1,6 @@
-<!--<?php
+<?php
 ob_start();
-?>-->
+?>
 <?php 
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
@@ -10,20 +10,21 @@ ob_start();
 	include '../modelo/Usuario.php';
 	include '../modelo/Rol.php';
 	include '../modelo/RolUsuario.php';
-	//include '../controlador/ControlEntidad.php';
-	//include '../controlador/ControlConexionPdo.php';
-	//include '../modelo/Entidad.php';
+	include '../controlador/ControlEntidad.php';
+	include '../controlador/ControlConexionPdo.php';
+	include '../modelo/Entidad.php';
 
-  //session_start();
-  /*if($_SESSION['email']==null)header('Location: ../login2.php');
+  session_start();
+  if($_SESSION['email']==null)header('Location: ../login.php');
 
   $permisoParaEntrar=false;
 	$listaRolesDelUsuario = $_SESSION['listaRolesDelUsuario'];
-	var_dump($listaRolesDelUsuario);
+	//var_dump($listaRolesDelUsuario);
 	for($i=0;$i<count($listaRolesDelUsuario);$i++){
-		if($listaRolesDelUsuario[$i]->__get('nombre')=="admin")$permisoParaEntrar=true;
+		if($listaRolesDelUsuario[$i]->__get('name')=="Admin-Global")
+		$permisoParaEntrar=true;
 	}
-	if(!$permisoParaEntrar)header('Location: vistaHome.php');*/
+	if(!$permisoParaEntrar)header('Location: vistaHome.php');
 ?>
 <?php
 	
@@ -108,6 +109,13 @@ ob_start();
 			$objControlUsuario->borrar();
 			header('Location: vistaUsuarios.php');
 			break;
+			case 'Limpiar':
+				$Id = 0;
+				$Name = "";
+				$Email = "";
+				$Password = "";		
+				header('Location: vistaUsuarios.php');
+				break;
 		
 		default:
 			# code...
@@ -120,6 +128,7 @@ ob_start();
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Usuarios</title>
+<link rel="shortcut icon" href="../vista/img/logo-DBD-01.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -154,7 +163,7 @@ ob_start();
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2 class="miEstilo">Gestión <b>Usuarios</b></h2>
+						<h2 class="table-title-name">Gestión <b>Usuarios</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>Gestión Usuarios</span></a>
@@ -261,6 +270,7 @@ ob_start();
 									<input type="submit" id="btnConsultar" name="bt" class="btn btn-primary" value="Consultar">
 									<input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
 									<input type="submit" id="btnBorrar" name="bt" class="btn btn-danger" value="Borrar">
+									<input type="submit" id="btnLimpiar" name="bt" class="btn btn-warning" value="Limpiar">
 								</div>
 							</div>
 							
@@ -296,10 +306,9 @@ ob_start();
 						</div>				
 									
 				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					
-				</div>
+				<!--<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">					
+				</div>-->
 			</form>
 		</div>
 	</div>

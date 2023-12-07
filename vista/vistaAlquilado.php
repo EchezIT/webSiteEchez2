@@ -6,20 +6,22 @@ ob_start();
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlAlquilado.php';
 	include '../modelo/Alquilado.php';
-	/*include '../controlador/ControlEntidad.php';
+	include '../controlador/ControlEntidad.php';
 	include '../controlador/ControlConexionPdo.php';
-	include '../modelo/Entidad.php';*/
+	include '../modelo/Entidad.php';
 
-  /*session_start();
-  if($_SESSION['email']==null)header('Location: ../login2.php');
+  session_start();
+  if($_SESSION['email']==null)header('Location: ../login.php');
 
   $permisoParaEntrar=false;
 	$listaRolesDelUsuario = $_SESSION['listaRolesDelUsuario'];
-	var_dump($listaRolesDelUsuario);
+	//var_dump($listaRolesDelUsuario);
 	for($i=0;$i<count($listaRolesDelUsuario);$i++){
-		if($listaRolesDelUsuario[$i]->__get('nombre')=="admin")$permisoParaEntrar=true;
+		if($listaRolesDelUsuario[$i]->__get('name')=="Admin" || $listaRolesDelUsuario[$i]->__get('name')=="Admin-Global")
+
+		$permisoParaEntrar=true;
 	}
-	if(!$permisoParaEntrar)header('Location: vistaHome.php');*/
+	if(!$permisoParaEntrar)header('Location: vistaHome.php');
 ?>
 <?php
 	
@@ -130,7 +132,21 @@ ob_start();
 			$objControlUsuario->borrar();
 			header('Location: vistaUsuarios.php');*/
 			break;
-		
+		case 'Limpiar':
+			$Id = "";
+			$User_Name = "";
+			$Serial = "";
+			$PC_Name = "";
+			$Installation_Date = "";
+			$Plate_PC = "";
+			$Specifications = "";
+			$Ram = "";
+			$Desktop_Laptop = "";
+			$Domain = "";
+			$Status_PC = "";
+			$dateUpdate_Date = "";		
+			header('Location: vistaAlquilado.php');
+			break;
 		default:
 			# code...
 			break;
@@ -142,6 +158,7 @@ ob_start();
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>PCs Alquilados</title>
+<link rel="shortcut icon" href="../vista/img/logo-DBD-01.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -176,7 +193,7 @@ ob_start();
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2 class="text-primary">PCs <b>Alquilados</b></h2>
+						<h2 class="table-title-name">PCs <b>Alquilados</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>PC Alquilado</span></a>
@@ -193,18 +210,18 @@ ob_start();
 								<label for="selectAll"></label>
 							</span>
 						</th>
-						<th>Id</th>
-						<th>User Name</th>
+						<!--<th>Id</th>-->
+						<th>Usuario</th>
 						<th>Serial</th>
-						<th>PC Name</th>
-						<th>Installation Date</th>
+						<th>Nombre PC</th>
+						<th>Fecha de instalación</th>
 						<th>Plate PC</th>
-						<th>Specifications</th>
+						<th>Especificaciones</th>
 						<th>Ram</th>
-						<th>Desktop Laptop</th>
-						<th>Domain</th>
-						<th>Status PC</th>
-						<th>dateUpdate Date</th>
+						<th>Desktop/Laptop</th>
+						<th>Dominio</th>
+						<th>Estado PC</th>
+						<th>Fecha actualizada</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -218,7 +235,7 @@ ob_start();
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td><?php echo $arregloAlquilado[$i]->getId();?></td>
+							<!--<td><?php echo $arregloAlquilado[$i]->getId();?></td>-->
 							<td><?php echo $arregloAlquilado[$i]->getUser_Name();?></td>
 							<td><?php echo $arregloAlquilado[$i]->getSerial();?></td>
 							<td><?php echo $arregloAlquilado[$i]->getPC_Name();?></td>
@@ -258,10 +275,10 @@ ob_start();
 <!-- crud Modal HTML -->
 <div id="crudModal" class="modal fade">
 	<div class="modal-dialog">
-		<div class="modal-content" style="border-radius: 20px">
+		<div class="modal-content">
 			<form action="vistaAlquilado.php" method="post">
-				<div class="modal-header bg-primary" style="border-radius: 20px 20px 0px 0px ">						
-					<h4 class="modal-title text-dark">PC Alquilado</h4>
+				<div class="modal-header">						
+					<h4 class="modal-title">PC Alquilado</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -323,8 +340,13 @@ ob_start();
 								</div>
 								<div class="form-group col-md-6">
 									<label>Desktop/Laptop</label>
-									<input type="text" id="txtDesktop_Laptop" name="txtDesktop_Laptop" class="form-control" 
-									value="<?php echo $Desktop_Laptop ?>" style="border-radius: 10px">
+									<!--<input type="text" id="txtDesktop_Laptop" name="txtDesktop_Laptop" class="form-control" 
+									value="<?php echo $Desktop_Laptop ?>" style="border-radius: 10px">-->
+									<select id="txtDesktop_Laptop" name="txtDesktop_Laptop" class="form-control" 
+									value="<?php echo $Desktop_Laptop ?>" style="border-radius: 10px" >
+										<option selected>Desktop</option>
+										<option selected>Laptop</option>
+									</select>
 								</div>
 							</div>
 							<div class="row">
@@ -350,6 +372,7 @@ ob_start();
 									<input type="submit" id="btnConsultar" name="bt" class="btn btn-success" value="Consultar">
 									<input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
 									<input type="submit" id="btnBorrar" name="bt" class="btn btn-danger" value="Borrar">
+									<input type="submit" id="btnLimpiar" name="bt" class="btn btn-warning" value="Limpiar">
 								</div>
 							</div>
 							
@@ -384,11 +407,7 @@ ob_start();
 						</div>
 						</div>				
 									
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					
-				</div>
+				</div>			
 			</form>
 		</div>
 	</div>

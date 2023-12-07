@@ -11,6 +11,7 @@
     include_once 'modelo/Entidad.php';
     session_start();
 	$boton = "";
+    $Id = "";
 	$ema = "";
 	$con = "";
 	$objControlUsuario = new ControlUsuario(null);
@@ -20,7 +21,7 @@
 	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
 	switch ($boton) {
 		case 'Login':
-			$objUsuario = new Usuario($ema, $con);
+			$objUsuario = new Usuario(0,"",$ema, $con);
 			$objControlUsuario = new ControlUsuario($objUsuario);
 			//$objControlUsuario->validarIngreso();
 			$validacionExitosa = $objControlUsuario->validarIngreso();
@@ -29,13 +30,15 @@
                 //$datosUsuario = ['email' => $email, 'contrasena' => $contrasena];
 		//$objUsuario = new Entidad($datosUsuario);
                 $objControlRolUsuario = new ControlEntidad('rol_usuario');
-                $sql = "SELECT rol.id as id, rol.nombre as nombre
+
+                $sql = "SELECT rol.id as id, rol.name as name
                     FROM rol_usuario INNER JOIN rol ON rol_usuario.fkidrol = rol.id
-                    WHERE fkemail = ?";
+                    INNER JOIN usuario ON rol_usuario.fkidUsuario = usuario.id
+                    WHERE Email = ?";
                 $parametros = [$ema];
                 $listaRolesDelUsuario = $objControlRolUsuario->consultar($sql, $parametros);
                 $_SESSION['listaRolesDelUsuario']=$listaRolesDelUsuario;
-                //var_dump($listaRolesDelUsuario);
+                var_dump($listaRolesDelUsuario);
 				//echo '<div class="alert alert-danger">DATOS CORRECTOS</div>';
                 header('Location: vista/vistaHome.php'); 	
             }else{
@@ -46,7 +49,7 @@
 		
 		default:
 			# code...
-			break;
+			break;            
 	}
 ?>
 
@@ -54,7 +57,7 @@
 /*author:starttemplate*/
 /*reference site : starttemplate.com*/
 body {
-  background-image:url('https://www.freelance-informatique.fr/images/actualites/developpeurs-concentrent-apprentissage-ia.jpg');
+  background-image:url('https://echezgroup.com/wp-content/uploads/2023/08/COO-Echez-Group-y-experto-en-Proteccion-de-Marca.jpg');
   background-position:center;
   background-size:cover;
   
@@ -129,8 +132,8 @@ h4 {
         <meta name="keywords"
             content="unique login form,leamug login form,boostrap login form,responsive login form,free css html login form,download login form">
         <meta name="author" content="leamug">
-        <title>Future Company</title>
-        <link rel="shortcut icon" href="./vista/img/time-23.png"/>
+        <title>Echez Group</title>
+        <link rel="shortcut icon" href="./vista/img/logo-DBD-01.png"/>
         <link href="css/style.css" rel="stylesheet" id="style">
         <!-- Bootstrap core Library -->
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -147,11 +150,11 @@ h4 {
     <div class="container">
         <div class="row">
             <div class="col-md-offset-5 col-md-4 text-center">
-                <h1 class='text-white'>Future Company</h1>
+                <h1 class='text-white'>Echez Group</h1>
                 <div class="form-login"></br>
                     <h4>Secure Login</h4>
                     </br>
-                    <form action="login2.php" method="post">
+                    <form action="login.php" method="post">
                         <input type="text" id="userName" name="txtEmail" required="required" value="<?php echo $ema ?>" class="form-control input-sm chat-input" placeholder="username"/>
                         </br></br>
                         <input type="password" id="userPassword" name="txtContrasena" required="required" value="<?php echo $con ?>" class="form-control input-sm chat-input" placeholder="password"/>

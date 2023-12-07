@@ -1,25 +1,26 @@
-<!--<?php
+<?php
 ob_start();
-?>-->
+?>
 <?php 
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlRol.php';
 	include '../modelo/Rol.php';
-	//include '../controlador/ControlEntidad.php';
-	//include '../controlador/ControlConexionPdo.php';
-	//include '../modelo/Entidad.php';
+	include '../controlador/ControlEntidad.php';
+	include '../controlador/ControlConexionPdo.php';
+	include '../modelo/Entidad.php';
 
-  //session_start();
-  /*if($_SESSION['Name']==null)header('Location: ../login2.php');
-
-  $permisoParaEntrar=false;
-	$listaRolesDelRol = $_SESSION['listaRolesDelRol'];
-	var_dump($listaRolesDelRol);
-	for($i=0;$i<count($listaRolesDelRol);$i++){
-		if($listaRolesDelRol[$i]->__get('nombre')=="admin")$permisoParaEntrar=true;
-	}
-	if(!$permisoParaEntrar)header('Location: vistaHome.php');*/
+	session_start();
+	if($_SESSION['email']==null)header('Location: ../login.php');
+  
+	$permisoParaEntrar=false;
+	  $listaRolesDelUsuario = $_SESSION['listaRolesDelUsuario'];
+	  //var_dump($listaRolesDelUsuario);
+	  for($i=0;$i<count($listaRolesDelUsuario);$i++){
+		  if($listaRolesDelUsuario[$i]->__get('name')=="Admin-Global")
+		  $permisoParaEntrar=true;
+	  }
+	  if(!$permisoParaEntrar)header('Location: vistaHome.php');
 ?>
 <?php
 	
@@ -116,11 +117,12 @@ ob_start();
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Roles</title>
+<link rel="shortcut icon" href="../vista/img/logo-DBD-01.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../vista/css/misCss.css">
+<link rel="stylesheet" href="../vista/css/misCss1.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -150,7 +152,7 @@ ob_start();
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2 class="miEstilo">Gestión <b>Roles</b></h2>
+						<h2 class="table-title-name">Gestión <b>Roles</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>Gestión Roles</span></a>
@@ -282,10 +284,6 @@ ob_start();
 						</div>
 						</div>				
 									
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					
 				</div>
 			</form>
 		</div>

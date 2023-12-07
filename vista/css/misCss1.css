@@ -8,8 +8,15 @@ body {
     margin: 0 0;
 }
 
-.miEstilo{
-	color:#bd0000;
+.table-title-name {
+	color:#243d84;
+}
+.modal .modal-header {
+	background-color: #243d84;
+	border-radius: 20px 20px 0px 0px;
+}
+.modal-title {
+	color: #ffffff;
 }
 /*
 .internalContainer{
@@ -209,7 +216,7 @@ table.table .avatar {
 	padding: 20px 30px;
 }
 .modal .modal-content {
-	border-radius: 3px;
+	border-radius: 20px;
 	font-size: 14px;
 }
 .modal .modal-footer {
