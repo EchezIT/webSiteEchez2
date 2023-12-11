@@ -42,6 +42,13 @@
 				//echo '<div class="alert alert-danger">DATOS CORRECTOS</div>';
                 header('Location: vista/vistaHome.php'); 	
             }else{
+               /* echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Datos erroneos...",
+                    text: "Los datos ingresados no coinsiden con nuestros registros. Verifica e intentalo de nuevo"                 
+                  });
+                  </script>';*/
                 echo '<script>alert("Datos erroneos, reintente por favor");</script>';
             }
 			//header('Location: vistaUsuarios.php');

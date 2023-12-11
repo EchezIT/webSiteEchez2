@@ -251,7 +251,7 @@ ob_start();
 							<div id="home" class="container tab-pane active"><br>
 								<div class="form-group">
 								<label>Id</label>
-									<input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $Id ?>" disabled>
+									<input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $Id ?>">
 								</div>
 								<div class="form-group">
 								<label>Email</label>

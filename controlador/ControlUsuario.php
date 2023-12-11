@@ -12,15 +12,19 @@
             $validar = false;
             $ema = $this->objUsuario->getEmail(); 
             $con = $this->objUsuario->getPassword();
-            $comandoSql = "SELECT * FROM usuario WHERE email='$ema' AND Password='$con'";
+            $comandoSql = "SELECT * FROM usuario WHERE email='$ema'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
-            $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
+            $recordSet = $objControlConexion->ejecutarSelect($comandoSql);           
             try
             {
-                if (mysqli_num_rows($recordSet) > 0) 
-                {
-                    $validar = true;
+                if (mysqli_num_rows($recordSet) > 0) // && 
+                {            
+                    $fila = $recordSet->fetch_assoc();
+                    $verificar_hash = password_verify($con, $fila['Password']);     
+                    if ($verificar_hash) {
+                        $validar = true;
+                    }
                 }
                 $objControlConexion->cerrarBd();
             }
@@ -64,7 +68,10 @@
             $Email = $this->objUsuario->getEmail(); 
             $Password = $this->objUsuario->getPassword();
 
-            $comandoSql = "INSERT INTO Usuario(Id,Name,Email,Password) VALUES ('$Id','$Name','$Email', '$Password')";
+            // Hashea la contraseña con Bcrypt
+            $hash = password_hash($Password, PASSWORD_BCRYPT);
+
+            $comandoSql = "INSERT INTO Usuario(Id,Name,Email,Password) VALUES ('$Id','$Name','$Email', '$hash')";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -92,8 +99,10 @@
             $Name = $this->objUsuario->getName();
             $Email = $this->objUsuario->getEmail(); 
             $Password = $this->objUsuario->getPassword();
-                  
-            $comandoSql = "UPDATE usuario SET Password='$Password',Name='$Name' WHERE email = '$Email'";
+            // Hashea la contraseña con Bcrypt
+            $hash = password_hash($Password, PASSWORD_BCRYPT);
+
+            $comandoSql = "UPDATE usuario SET Password='$hash',Name='$Name' WHERE email = '$Email'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);

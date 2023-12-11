@@ -4,5 +4,17 @@ img {
 }
 
 .navbar-nav {
-    padding-left: 5%;
+    padding-left: 75%;
 }
+.exit-button {
+    padding-left: 25px;
+}
+
+@media only screen and (max-width: 989px) {
+    .navbar-nav {
+        padding-left: 3%;
+    }  
+    .exit-button {
+        padding-left: 0px;
+    }
+  }

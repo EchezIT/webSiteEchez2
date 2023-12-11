@@ -31,14 +31,14 @@
           <a class="dropdown-item" href="vistaRol.php">Rol</a>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item exit-button">
         <a class="nav-link" href="cerrarSesion.php">Salir</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!--<form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Borrar">Search</button> <!--No esta cogiendo el value-->
-    </form>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Borrar">Search</button> No esta cogiendo el value
+    </form>-->
   </div>
 </nav>
 </div>
