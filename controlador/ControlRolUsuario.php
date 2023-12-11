@@ -11,6 +11,8 @@
             $FkIdRol = $this->objRolUsuario->getFkIdRol();
             //hacer un select para que me traiga el id del usuario que tiene el email ingresado
             //ie tengo que tener al menos el correo
+        
+
             $comando = "insert into rol_usuario(FkIdUsuario,FkIdRol) values('$FkIdUsuario','$FkIdRol')"; 
             $objControlConexion = new ControlConexion(); 
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']); //Se invoca el método abrirBd.
