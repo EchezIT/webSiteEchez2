@@ -60,10 +60,9 @@ ob_start();
 				for($i = 0; $i < count($listbox1); $i++){
 					$cadenas = explode(";", $listbox1[$i]);
 					$IdRol = $cadenas[0];
-					//hacer un select para que me traiga el id del usuario que tiene el email ingresado
-					//ie tengo que tener al menos el correo
-					/*$comandoSqlIdUsuario = "SELECT * FROM usuario WHERE email='$ema'";           
-					$recordSet = $objControlConexion->ejecutarSelect($comandoSqlIdUsuario); */
+					//Se consulta el Id del usuario para poder agregarlo en rol_usuario
+                    $objUsuario = $objControlUsuario->consultar();
+					$Id = $objUsuario->getId();
 
 					$objRolUsuario = new RolUsuario($Id, $IdRol);
 					$objControlRolUsuario = new ControlRolUsuario($objRolUsuario);
@@ -256,7 +255,7 @@ ob_start();
 							<div id="home" class="container tab-pane active"><br>
 								<div class="form-group">
 								<label>Id</label>
-									<input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $Id ?>">
+									<input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $Id ?>" disabled>
 								</div>
 								<div class="form-group">
 								<label>Email</label>
